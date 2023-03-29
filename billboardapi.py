@@ -6,7 +6,6 @@ def billboardAPI():
 
     list = []
     x = chart.__len__()
-    print(x)
     current = 0
     new_data = []
     for current in range(100):
