@@ -2,7 +2,7 @@ import billboard
 
 
 def billboardAPI():
-    chart = billboard.ChartData('hot-100', date="1999-02-23")
+    chart = billboard.ChartData('hot-100')
 
     list = []
     x = chart.__len__()
