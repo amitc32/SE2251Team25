@@ -25,7 +25,7 @@ class Twitter:
                 return title, num_tweets
 
 # create list of songs, gonna be taken from billboard classes    
-tweet_list = ["Morgan Wallen AND Whiskey Glasses", "Ice Spice AND Boys a Liar", "Lilbaby AND Grace"]
+tweet_list = [ "Ice Spice AND Boys a Liar", "Morgan Wallen AND Whiskey Glasses","Lilbaby AND Grace","Creepin AND Metro Boomin"]
 # empty list that will hold song name/artist and tweets 
 tweet_comp = []
 # Call em'  
@@ -36,5 +36,17 @@ for tweet in tweet_list:
 print(tweet_comp)
 
 
-df = pd.DataFrame()
+# Create a Pandas DataFrame from the video data
+columns = ["Song_Artist-Title","Song_Tweets"]
+df = pd.DataFrame(tweet_comp, columns=columns)
+
+
+# Sort songs
+def rank_tweets(df):
+    ranked_df = df.sort_values(by=['Song_Tweets'], ascending=False)
+    ranked_df.reset_index(drop=True, inplace=True)
+    return ranked_df
+sorted_tweets = rank_tweets(df)
+print(sorted_tweets)
+
 
