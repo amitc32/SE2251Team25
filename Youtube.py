@@ -61,5 +61,6 @@ columns = ["video_id", "video_title", "views", "likes", "comments", "score"]
 df = pd.DataFrame(video_data, columns=columns)
 
 # Sort songs
-sorted_songs = rank_videos(df)
-print(sorted_songs)
+def sorted_songs():
+    return rank_videos(df)
+# print(sorted_songs)
