@@ -36,7 +36,7 @@ class Formatter:
 
         # parsing a list containing each song title and their ranking on twitter, youtube and billboard
         ranked_song_list = []
-        for billboard_entry in bbd.billboardApi():
+        for billboard_entry in bbd.billboardApi.run():
             song_info = billboard_entry
             pos = song_pos
             song_pos += 1
@@ -65,9 +65,9 @@ class Formatter:
         # checks the relative distance between the different results and creates an accuracy score
         for song in ranked_song_list:
             if song[1] > song[2]:
-                twiiter_accuracy = (len(bbd.billboardAPI()) - (song[1]-song[2]))/len(bbd.billboardAPI())
+                twiiter_accuracy = (len(bbd.billboardAPI.run()) - (song[1]-song[2]))/len(bbd.billboardAPI.run())
             elif song[1] < song[2]:
-                twiiter_accuracy = (len(bbd.billboardAPI()) - (song[2]-song[1]))/len(bbd.billboardAPI())
+                twiiter_accuracy = (len(bbd.billboardAPI.run()) - (song[2]-song[1]))/len(bbd.billboardAPI.run())
 
             artist_and_song = song[0].split(' AND ')
             artist = artist_and_song[0]
@@ -75,6 +75,7 @@ class Formatter:
     
             tweet_specs = (artist,title,twiiter_accuracy)
             tweet_accuracy.append(tweet_specs)
+            twitter_accuracy += 1
         return tweet_accuracy
 
     def youtubeAccuracy():
@@ -87,9 +88,9 @@ class Formatter:
         # checks the relative distance between the different results and creates an accuracy score
         for song in ranked_song_list:
             if song[1] > song[3]:
-                youtube_accuracy = (len(bbd.billboardAPI()) - (song[1]-song[3]))/len(bbd.billboardAPI())
+                youtube_accuracy = (len(bbd.billboardAPI.run()) - (song[1]-song[3]))/len(bbd.billboardAPI.run())
             elif song[1] < song[3]:
-                youtube_accuracy = (len(bbd.billboardAPI()) - (song[3]-song[1]))/len(bbd.billboardAPI())
+                youtube_accuracy = (len(bbd.billboardAPI.run()) - (song[3]-song[1]))/len(bbd.billboardAPI.run())
             
             artist_and_song = song[0].split(' AND ')
             artist = artist_and_song[0]
@@ -97,6 +98,7 @@ class Formatter:
 
             views_specs = (artist,title,youtube_accuracy)
             views_accuracy.append(views_specs)
+            views_accuracy += 1
         return views_accuracy
 
     def billboardAccuracy():
@@ -118,6 +120,7 @@ class Formatter:
             title = artist_and_song[1]
 
             billboard_accuracy.append(artist,title,percentage.format(twitter_accuracy[song_pos][1]),percentage.format(youtube_accuracy[song_pos][1]),percentage.format(ranking_accuracy))
+            song_pos += 1
         return billboard_accuracy
 
     def formatAllValues():
@@ -149,7 +152,7 @@ class OutputFormattedInformation:
 
 # commands to run to output all relative accuracies in their sorted orders
 print("Billboard Hot-100 list:")
-print(bbd.run() + "\n"*3)
+print(bbd.billboardAPI.run() + "\n"*3)
 print("Tweet's regarding each song in order of their tweet count:")
 print(Formatter.tw + "\n"*3)
 print("Youtube streams for each song in order of their views, likes and comments:")
