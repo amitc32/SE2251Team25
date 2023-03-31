@@ -44,7 +44,7 @@ class Youtube():
     
     def sort_videos():
         # Song titles should be passed in from billboard api
-        song_titles = bbd.run()
+        song_titles = bbd.billboard.run()
         # Loop through the song titles and get video information for each one
         video_data = []
         for title in song_titles:
