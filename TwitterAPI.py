@@ -25,21 +25,11 @@ class Twitter:
 
                 return title, num_tweets
 
-# create list of songs, gonna be taken from billboard classes    
-tweet_list = bbp.billboardAPI()
-# empty list that will hold song name/artist and tweets 
-tweet_comp = []
-# Call em'  
-twitter = Twitter
-for tweet in tweet_list:
-        tweet_comp.append(twitter.getTweets(tweet))
-
-print(tweet_comp)
 
 
-# Create a Pandas DataFrame from the video data
-columns = ["Song_Artist-Title","Song_Tweets"]
-df = pd.DataFrame(tweet_comp, columns=columns)
+
+
+
 
 
 # Sort songs
@@ -47,6 +37,20 @@ def rank_tweets(df):
     ranked_df = df.sort_values(by=['Song_Tweets'], ascending=False)
     ranked_df.reset_index(drop=True, inplace=True)
     return ranked_df
-def sorted_tweets():
-    return rank_tweets(df)
-# print(sorted_tweets)
+
+def get_sorted_tweets(songs):
+    # empty list that will hold song name/artist and tweets 
+    tweet_comp = []
+    # Call em'  
+    twitter = Twitter
+    for tweet in songs:
+            tweet_comp.append(twitter.getTweets(tweet))
+
+    # Create a Pandas DataFrame from the video data
+    columns = ["Song_Artist-Title","Song_Tweets"]
+    df = pd.DataFrame(tweet_comp, columns=columns)
+    
+    # Ranks songs based on number of tweets per song
+    ranked_songs = rank_tweets(df)
+    return list(ranked_songs["song"])
+
