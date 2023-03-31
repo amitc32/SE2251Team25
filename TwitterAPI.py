@@ -1,5 +1,6 @@
 import snscrape.modules.twitter as sntwitter
 import pandas as pd
+import billboardapi as bbp
 
 class Twitter:
         def getTweets(title):
@@ -8,10 +9,10 @@ class Twitter:
                 # Figure out how to Billboard.get song and artist name from Adams code
                 # since searching generic takes too log to compile, gonna search song name and artist tweets
 
-                location = 'Canada' 
+                 
                 # add get locations, get date blah blah from team
 
-                since_date = '2023-03-1'
+                since_date = '2023-03-25'
                 until_date = '2023-03-28'
                 #Gonna change date, depending on relavance
                 
@@ -25,7 +26,7 @@ class Twitter:
                 return title, num_tweets
 
 # create list of songs, gonna be taken from billboard classes    
-tweet_list = [ "Ice Spice AND Boys a Liar", "Morgan Wallen AND Whiskey Glasses","Lilbaby AND Grace","Creepin AND Metro Boomin"]
+tweet_list = bbp.billboardAPI()
 # empty list that will hold song name/artist and tweets 
 tweet_comp = []
 # Call em'  
@@ -46,7 +47,6 @@ def rank_tweets(df):
     ranked_df = df.sort_values(by=['Song_Tweets'], ascending=False)
     ranked_df.reset_index(drop=True, inplace=True)
     return ranked_df
-sorted_tweets = rank_tweets(df)
-print(sorted_tweets)
-
-
+def sorted_tweets():
+    return rank_tweets(df)
+# print(sorted_tweets)
