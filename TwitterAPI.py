@@ -27,7 +27,7 @@ class Twitter:
 
     def process_tweets():
         # create list of songs, gonna be taken from billboard classes    
-        tweet_list = bbd.run()
+        tweet_list = bbd.billboardAPI.run()
         # empty list that will hold song name/artist and tweets 
         tweet_comp = []
         # Call em'  
