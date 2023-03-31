@@ -48,7 +48,8 @@ class Youtube():
         # Loop through the song titles and get video information for each one
         video_data = []
         for title in song_titles:
-            video_info = Youtube.get_video_info(title)
+            song_name  = title.split(" AND ")
+            video_info = Youtube.get_video_info(song_name[1])
             video_data.append(video_info)
 
         # Create a Pandas DataFrame from the video data
