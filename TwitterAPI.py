@@ -47,5 +47,6 @@ def rank_tweets(df):
     ranked_df = df.sort_values(by=['Song_Tweets'], ascending=False)
     ranked_df.reset_index(drop=True, inplace=True)
     return ranked_df
-sorted_tweets = rank_tweets(df)
-print(sorted_tweets)
+def sorted_tweets():
+    return rank_tweets(df)
+# print(sorted_tweets)
