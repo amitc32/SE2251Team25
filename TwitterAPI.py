@@ -12,7 +12,7 @@ class Twitter:
                  
                 # add get locations, get date blah blah from team
 
-                since_date = '2023-03-25'
+                since_date = '2023-03-10'
                 until_date = '2023-03-28'
                 #Gonna change date, depending on relavance
                 
